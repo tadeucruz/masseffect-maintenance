@@ -1,0 +1,10 @@
+[Unit]
+Description=Find Subtitles
+
+[Service]
+WorkingDirectory=/mnt/dados/App/masseffect-maintenance
+ExecStart=/usr/bin/python find-subtitles.py
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

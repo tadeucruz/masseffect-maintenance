@@ -1,0 +1,11 @@
+[Unit]
+Description=Remove some trashes
+
+[Service]
+WorkingDirectory=/mnt/dados/App/masseffect-maintenance
+Type=oneshot
+ExecStart=/usr/bin/python remove-trash.py
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
