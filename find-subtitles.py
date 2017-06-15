@@ -39,7 +39,7 @@ for video in scan_videos(pathTVShows, age=timedelta(weeks=4)):
     tvShows.append(video)
 
 possibleSubtitles = download_best_subtitles(tvShows, {Language('eng'), Language('por', 'BR')},
-                                            providers=['legendastv', 'thesubdb', 'opensubtitles'])
+                                            providers=['legendastv', 'thesubdb', 'opensubtitles'], min_score=300)
 
 for video in tvShows:
     if possibleSubtitles[video]:
