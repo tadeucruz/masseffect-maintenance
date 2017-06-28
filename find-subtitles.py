@@ -5,6 +5,7 @@ from datetime import timedelta
 from babelfish import Language
 from subliminal import download_best_subtitles, region, save_subtitles, scan_videos
 from subliminal.core import search_external_subtitles
+from subliminal.providers.addic7ed import Addic7edProvider
 from subliminal.providers.legendastv import LegendasTVProvider
 from subliminal.providers.opensubtitles import OpenSubtitlesProvider
 
@@ -23,11 +24,22 @@ if not config['OPENSUBTITLE']['username']:
 if not config['OPENSUBTITLE']['password']:
     logger.info("Problem in configuration")
 
+if not config['ADDIC7ED']['username']:
+    logger.info("Problem in configuration")
+
+if not config['ADDIC7ED']['password']:
+    logger.info("Problem in configuration")
+
 # configuration needs for subliminal
 providerLegendaTv = LegendasTVProvider(username=config['LEGENDASTV']['username'],
                                        password=config['LEGENDASTV']['password'])
+
 providerOpenSubtitles = OpenSubtitlesProvider(username=config['OPENSUBTITLE']['username'],
                                               password=config['OPENSUBTITLE']['password'])
+
+providerAddic7ed = Addic7edProvider(username=config['ADDIC7ED']['username'],
+                                    password=config['ADDIC7ED']['password'])
+
 region.configure('dogpile.cache.memory')
 
 pathTVShows = config["DEFAULT"]["pathTVShows"]
@@ -39,8 +51,7 @@ for video in scan_videos(pathTVShows, age=timedelta(weeks=4)):
     tvShows.append(video)
 
 possibleSubtitles = download_best_subtitles(tvShows, {Language('eng'), Language('por', 'BR')},
-                                            providers=['legendastv', 'thesubdb', 'opensubtitles'], min_score=300)
-
+                                            providers=['legendastv', 'addic7ed', 'opensubtitles'], min_score=300)
 for video in tvShows:
     if possibleSubtitles[video]:
         logger.info("Downdload subtitles for %s", video.name)
