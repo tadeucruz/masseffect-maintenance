@@ -57,4 +57,4 @@ for video in tvShows:
         logger.info("Downdload subtitles for %s", video.name)
         for videoSubtitle in possibleSubtitles[video]:
             logger.info("   - Language %s", videoSubtitle.language.alpha3)
-        save_subtitles(video, possibleSubtitles[video], encoding='utf-8')
+        save_subtitles(video, possibleSubtitles[video])
