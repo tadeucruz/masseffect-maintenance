@@ -42,7 +42,7 @@ providerAddic7ed = Addic7edProvider(username=config['ADDIC7ED']['username'],
 
 region.configure('dogpile.cache.memory')
 
-pathTVShows = config["DEFAULT"]["pathTVShows"]
+pathTVShows = "/media"
 tvShows = []
 
 for video in scan_videos(pathTVShows, age=timedelta(weeks=4)):
