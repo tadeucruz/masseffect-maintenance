@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd /opt/masseffect-maintenance
+python3 remove-trash.py
+python3 update-dnsomatic.py

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /opt/masseffect-maintenance
+python3 find-subtitles.py
