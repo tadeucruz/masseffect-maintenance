@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
 from libs import file
-from libs.personalConfig import config
 from libs.personalLogger import logger
 
-pathTVShows = config["DEFAULT"]["pathTVShows"]
+pathTVShows = "/media"
 
 listaArquivos = file.list_files(pathTVShows, ".nfo")
 for arquivo in listaArquivos:
