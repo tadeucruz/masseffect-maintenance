@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-from datetime import timedelta
-
 from babelfish import Language
 from subliminal import download_best_subtitles, region, save_subtitles, scan_videos
 from subliminal.core import search_external_subtitles
@@ -42,17 +40,17 @@ providerAddic7ed = Addic7edProvider(username=config['ADDIC7ED']['username'],
 
 region.configure('dogpile.cache.memory')
 
-pathTVShows = "/media"
-tvShows = []
+pathMedias = "/media"
+medias = []
 
-for video in scan_videos(pathTVShows, age=timedelta(weeks=4)):
+for video in scan_videos(pathMedias):
     # Checking if the vidos has subltitles and what languages is it
     video.subtitle_languages |= set(search_external_subtitles(video.name).values())
-    tvShows.append(video)
+    medias.append(video)
 
-possibleSubtitles = download_best_subtitles(tvShows, {Language('eng'), Language('por', 'BR')},
+possibleSubtitles = download_best_subtitles(medias, {Language('eng'), Language('por', 'BR')},
                                             providers=['legendastv', 'addic7ed', 'opensubtitles'], min_score=300)
-for video in tvShows:
+for video in medias:
     if possibleSubtitles[video]:
         logger.info("Downdload subtitles for %s", video.name)
         for videoSubtitle in possibleSubtitles[video]:

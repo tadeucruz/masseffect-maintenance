@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-ENV VERSION 1.0.1
+ENV VERSION 1.1
 
 RUN apk add --no-cache python3 git bash && \
     pip3 install subliminal && \
