@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-from datetime import timedelta
-
 from babelfish import Language
 from subliminal import download_best_subtitles, region, save_subtitles, scan_videos
 from subliminal.core import search_external_subtitles
@@ -45,7 +43,7 @@ region.configure('dogpile.cache.memory')
 pathMedias = "/media"
 medias = []
 
-for video in scan_videos(pathMedias, age=timedelta(weeks=4)):
+for video in scan_videos(pathMedias):
     # Checking if the vidos has subltitles and what languages is it
     video.subtitle_languages |= set(search_external_subtitles(video.name).values())
     medias.append(video)
