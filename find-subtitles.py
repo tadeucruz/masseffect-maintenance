@@ -30,6 +30,9 @@ if not config['ADDIC7ED']['username']:
 if not config['ADDIC7ED']['password']:
     logger.info("Problem in configuration")
 
+if not config['MEDIA']['path']:
+    logger.info("Problem in configuration")
+
 # configuration needs for subliminal
 providerLegendaTv = LegendasTVProvider(username=config['LEGENDASTV']['username'],
                                        password=config['LEGENDASTV']['password'])
@@ -42,9 +45,9 @@ providerAddic7ed = Addic7edProvider(username=config['ADDIC7ED']['username'],
 
 region.configure('dogpile.cache.memory')
 
-pathMedias = "/media"
-medias = []
+pathMedias = config['MEDIA']['path']
 
+medias = []
 for video in scan_videos(pathMedias, age=timedelta(weeks=4)):
     # Checking if the vidos has subltitles and what languages is it
     video.subtitle_languages |= set(search_external_subtitles(video.name).values())
