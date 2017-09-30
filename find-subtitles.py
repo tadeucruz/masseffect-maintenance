@@ -54,7 +54,7 @@ for video in scan_videos(pathMedias, age=timedelta(weeks=4)):
     medias.append(video)
 
 possibleSubtitles = download_best_subtitles(medias, {Language('eng'), Language('por', 'BR')},
-                                            providers=['legendastv', 'addic7ed', 'opensubtitles'], min_score=300)
+                                            providers=['legendastv', 'addic7ed', 'opensubtitles'])
 for video in medias:
     if possibleSubtitles[video]:
         logger.info("Downdload subtitles for %s", video.name)
