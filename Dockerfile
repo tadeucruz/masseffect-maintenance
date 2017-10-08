@@ -1,13 +1,16 @@
 FROM alpine:latest
 
-ENV VERSION 1.2.1
+ENV VERSION 2.0
 
 RUN apk add --no-cache python3 git bash && \
-    pip3 install subliminal && \
     pip3 install requests && \
     pip3 install configparser && \
     mkdir -p /media && \
+    mkdir -p /opt/subliminal && \
     mkdir -p /opt/masseffect-maintenance
+
+COPY run.sh /opt/
+RUN chmod a+x /opt/run.sh
 
 COPY libs /opt/masseffect-maintenance/libs
 
@@ -21,7 +24,7 @@ RUN chmod a+x /etc/periodic/15min/15min
 COPY periodic/hourly /etc/periodic/hourly/
 RUN chmod a+x /etc/periodic/hourly/hourly
 
-ENTRYPOINT /usr/sbin/crond -f
+ENTRYPOINT /opt/run.sh
 
 VOLUME /opt/masseffect-maintenance/config
 VOLUME /media
