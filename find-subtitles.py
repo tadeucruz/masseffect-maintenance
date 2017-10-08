@@ -51,6 +51,7 @@ medias = []
 for video in scan_videos(pathMedias, age=timedelta(weeks=4)):
     # Checking if the vidos has subltitles and what languages is it
     video.subtitle_languages |= set(search_external_subtitles(video.name).values())
+    logger.info("Searching subtitles for %s", video.name)
     medias.append(video)
 
 possibleSubtitles = download_best_subtitles(medias, {Language('eng'), Language('por', 'BR')},
