@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-ENV VERSION 2.0
+ENV VERSION 2.1
 
 RUN apk add --no-cache python3 git bash && \
     pip3 install requests && \
