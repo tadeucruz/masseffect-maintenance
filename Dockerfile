@@ -1,8 +1,8 @@
 FROM alpine:latest
 
-ENV VERSION 2.1
+ENV VERSION 2.2
 
-RUN apk add --no-cache python3 git bash && \
+RUN apk add --no-cache python3 git bash unrar && \
     pip3 install requests && \
     pip3 install configparser && \
     mkdir -p /media && \

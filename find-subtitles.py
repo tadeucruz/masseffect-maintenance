@@ -33,7 +33,7 @@ if not config['MEDIA']['path']:
 providers = {
     'opensubtitles': True,
     'legendastv': True,
-    'addic7ed': True
+    'addic7ed': True,
 }
 
 provider_settings = {
@@ -48,7 +48,7 @@ provider_settings = {
     'addic7ed': {
         'username': config['ADDIC7ED']['username'],
         'password': config['ADDIC7ED']['password']
-    }
+    },
 }
 
 region.configure('dogpile.cache.memory')
