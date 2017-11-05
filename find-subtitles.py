@@ -51,7 +51,7 @@ provider_settings = {
     },
 }
 
-region.configure('dogpile.cache.memory')
+region.configure('dogpile.cache.dbm', arguments={'filename': 'cachefile.dbm'})
 
 pathMedias = config['MEDIA']['path']
 
